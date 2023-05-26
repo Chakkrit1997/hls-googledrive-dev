@@ -4,8 +4,7 @@
     "description": "",
     "scripts": {
         "start": "node ./dist/webserver/app.js",
-        "build": "rimraf dist && npm run build-backend && npm run build-frontend && npm run get-credentials",
-        "get-credentials": "wget $SERVICE_ACCOUNTS -O service_accounts.zip; unzip service_accounts.zip -d ./app/credentials; rm service_accounts.zip",
+        "build": "rimraf dist && npm run build-backend && npm run build-frontend",
         "build-frontend": "cd ./webfrontend && npm install && npm run build",
         "build-backend": "npm run clean && babel app/ --out-dir ./dist --copy-files",
         "clean": "rimraf dist"
