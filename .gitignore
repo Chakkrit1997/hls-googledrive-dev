@@ -6,3 +6,5 @@ dist
 *.ts
 *.m3u8
 *.zip
+mongo-volume
+.env
