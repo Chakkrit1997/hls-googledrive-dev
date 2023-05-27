@@ -1,0 +1,62 @@
+version: "3.3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command:
+      ["/bin/sh", "-c", "npm run start"]
+    ports:
+      - 5001:5001
+    environment:
+      - NODE_ENV=develop
+      - PORT=5001
+      - MONGOURI=mongodb://root:root@mongo:27017/
+      - REDIS_URL=redis://127.0.0.1:6379
+      - API_SERVER=http://127.0.0.1:5001
+    networks:
+      - app-network
+      - app-external
+  
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongo-volume:/data/db
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_DATABASE: hls_test
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      
+    networks:
+      - app-network
+  
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
+      ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
+    networks:
+      - app-network
+
+  redis:
+    image: "redis:alpine"
+    hostname: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+networks:
+  app-external:
+    external: true
+    name: hls-service
+  app-network:
+    driver: bridge
