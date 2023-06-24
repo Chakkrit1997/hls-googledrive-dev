@@ -3,11 +3,14 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
+        "dev": "nodemon --exec babel-node app/webserver/app.js",
+        "debug": "npx babel-node --presets @babel/preset-env app/webserver/app.js",
         "start": "node ./dist/webserver/app.js",
         "build": "rimraf dist && npm run build-backend && npm run build-frontend",
         "build-frontend": "cd ./webfrontend && npm install && npm run build",
         "build-backend": "npm run clean && babel app/ --out-dir ./dist --copy-files",
-        "clean": "rimraf dist"
+        "clean": "rimraf dist",
+        "test": "nodemon --exec babel-node app/workers/tests.js"
     },
     "dependencies": {
         "@babel/cli": "^7.8.4",
