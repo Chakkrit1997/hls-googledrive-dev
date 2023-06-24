@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command:
-      ["/bin/sh", "-c", "npm run start"]
+      ["/bin/sh", "-c", "npm run dev"]
     ports:
       - 5001:5001
     environment:
