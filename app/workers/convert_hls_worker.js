@@ -213,6 +213,7 @@ async function processJob(jobDoc, fileUploader, queueItem) {
 }
 
 function start() {
+    console.log("[START CONVERT_HLS_WORKER]");
     cleanupRoutine().catch(e => console.error(e));
     // generate Accounts from config
     generateAccounts(GoogleCredentialsConfig.service_accounts).then( (accounts) => {

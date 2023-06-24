@@ -56,6 +56,8 @@ export  class JobManager {
     }
 
     async addJob(queueName, options) {
+        console.log("add Job queuename = " + queueName)
+        console.log("options = " + JSON.stringify(options))
         if(!(queueName in this.queues))
             throw queueName+" is not in supported job types";
 
@@ -75,8 +77,9 @@ export  class JobManager {
                     "$setOnInsert": job.payload()
                 }, {new: true, upsert: true}).catch(e => console.error(e));
         }
-        
-        await queue.add({jobId: jobDoc._id}, {attempts:1, timeout: 60000*10, jobId: jobDoc._id.toString()});
+        console.log("[Add] Queue Start")
+        await queue.add({jobId: jobDoc._id}, {attempts:1, timeout:  60000*10, jobId: jobDoc._id.toString()});
+        console.log("[Complete] Queue Added!")
         
         return jobDoc;
     }
