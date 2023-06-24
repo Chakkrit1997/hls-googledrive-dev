@@ -1,6 +1,7 @@
 import express from "express";
 const serveStatic = require('serve-static');
 const path = require('path');
+require("dotenv").config();
 
 const app = express({ strict: true });
 app.enable('strict routing');

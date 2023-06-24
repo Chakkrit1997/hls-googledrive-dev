@@ -22,6 +22,7 @@
         "await-lock": "^2.0.1",
         "bluebird": "^3.7.2",
         "bull": "^3.13.0",
+        "dotenv": "^16.1.0",
         "express": "^4.17.1",
         "fluent-ffmpeg": "^2.1.2",
         "googleapis": "^47.0.0",
