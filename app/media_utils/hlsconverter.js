@@ -2,6 +2,8 @@ import {PassThrough, Writable} from "stream";
 import fs from "fs";
 import { v4 as uuidv4 } from 'uuid';
 import ffmpeg from "fluent-ffmpeg";
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+ffmpeg.setFfmpegPath(ffmpegPath);
 
 import { parseOptions } from "../utils/helper.js";
 
