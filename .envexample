@@ -1,0 +1,5 @@
+NODE_ENV=develop
+PORT=5001
+MONGOURI=mongodb://127.0.0.1:27017/
+REDIS_URL=redis://127.0.0.1:6379
+API_SERVER=http://127.0.0.1:5001
